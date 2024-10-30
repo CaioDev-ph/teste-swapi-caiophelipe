@@ -171,3 +171,27 @@ test('Deve receber msg erro, quando nave inexistente',async ()=> {
         detail: 'Not found'
     });
 });
+
+//-----------------------------------------------------------------------//
+test('',async ()=> {
+    const resposta = await request('https://swapi.dev/api').get('/starships/22/');
+// /starships/22/
+
+expect(resposta.status).toBe(200);
+expect(Number(resposta.body.cost_in_credits)).toBeGreaterThan(0);
+expect(Number(resposta.body.length)).toBeGreaterThan(0);
+expect(resposta.body.name).toBe('Imperial shuttle');
+expect(resposta.body.consumables).toBe("2 months");
+});
+test('Mensagem erro de nave inexistente', async ()=>{
+
+});
+test('Deve receber msg erro, quando nave inexistente',async ()=> {
+    const resposta = await request('https://swapi.dev/api').get('/starships/9999');
+
+    expect(resposta.status).toBe(404);
+    expect(resposta.body.detail).toBe('Not found');
+    expect(resposta.body).toMatchObject({
+        detail: 'Not found'
+    });
+});
