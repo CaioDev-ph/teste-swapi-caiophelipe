@@ -75,3 +75,27 @@ test('Deve receber msg erro, quando planeta inexistente',async ()=> {
         detail: 'Not found'
     });
 });
+
+//-----------------------------------------------------------------------//
+test('',async ()=> {
+    const resposta = await request('https://swapi.dev/api').get('/planets/13/');
+// /planets/13/
+
+expect(resposta.status).toBe(200);
+expect(resposta.body.climate).toBe("hot");
+expect(resposta.body.gravity).toBeDefined();
+expect(resposta.body.name).toBe('Mustafar');
+expect(resposta.body.terrain).toBe("volcanoes, lava rivers, mountains, caves");
+});
+test('Mensagem erro de planeta inexistente', async ()=>{
+
+});
+test('Deve receber msg erro, quando planeta inexistente',async ()=> {
+    const resposta = await request('https://swapi.dev/api').get('/planets/9999');
+
+    expect(resposta.status).toBe(404);
+    expect(resposta.body.detail).toBe('Not found');
+    expect(resposta.body).toMatchObject({
+        detail: 'Not found'
+    });
+});
