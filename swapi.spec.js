@@ -195,3 +195,24 @@ test('Deve receber msg erro, quando nave inexistente',async ()=> {
         detail: 'Not found'
     });
 });
+//-----------------------------------------------------------------------//
+test('',async ()=> {
+    const resposta = await request('https://swapi.dev/api').get('/starships/32/');
+// /starships/32/
+
+expect(resposta.status).toBe(200);
+expect(resposta.body.name).toBe('Droid control ship');
+expect(resposta.body.consumables).toBe("500 days");
+});
+test('Mensagem erro de nave inexistente', async ()=>{
+
+});
+test('Deve receber msg erro, quando nave inexistente',async ()=> {
+    const resposta = await request('https://swapi.dev/api').get('/starships/9999');
+
+    expect(resposta.status).toBe(404);
+    expect(resposta.body.detail).toBe('Not found');
+    expect(resposta.body).toMatchObject({
+        detail: 'Not found'
+    });
+});
