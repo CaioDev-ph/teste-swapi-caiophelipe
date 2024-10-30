@@ -52,3 +52,26 @@ test('Deve receber msg erro, quando pessoa inexistente',async ()=> {
     });
 });
 
+//-----------------------------------------------------------------------//
+test('',async ()=> {
+    const resposta = await request('https://swapi.dev/api').get('/planets/10/');
+// /planets/10/
+
+expect(resposta.status).toBe(200);
+expect(resposta.body.climate).toBe("temperate");
+expect(resposta.body.gravity).toBeDefined();
+expect(resposta.body.name).toBe('Kamino');
+expect(resposta.body.terrain).toBe("ocean");
+});
+test('Mensagem erro de planeta inexistente', async ()=>{
+
+});
+test('Deve receber msg erro, quando planeta inexistente',async ()=> {
+    const resposta = await request('https://swapi.dev/api').get('/planets/9999');
+
+    expect(resposta.status).toBe(404);
+    expect(resposta.body.detail).toBe('Not found');
+    expect(resposta.body).toMatchObject({
+        detail: 'Not found'
+    });
+});
